@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>IronCresCent Animated Premium Banner - Final</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --kick-green: #53FC18;
+    --dark-bg: rgba(5, 15, 10, 0.95);
+    --anim-speed: 3s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ============================= */
+/* ANA WRAPPER - DİNAMİK YAPI */
+/* ============================= */
+.banner-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 240px; /* Biraz daha daraltıldı, daha kompakt durması için */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 120px;
+    box-sizing: border-box;
+    z-index: 9999;
+    background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, var(--dark-bg) 100%);
+    backdrop-filter: blur(25px);
+    
+    /* ÜST AYIRICI ÇİZGİ (NEON LINE) */
+    border-top: 3px solid var(--kick-green);
+    box-shadow: 0 -15px 40px rgba(83, 252, 24, 0.15), 0 -30px 100px rgba(0,0,0,0.9);
+    
+    animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Üst Çizgi Üzerinde Akan Parlama (Lazer Efekti) */
+.banner-wrapper::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #fff, var(--kick-green), #fff, transparent);
+    background-size: 200% auto;
+    animation: laserFlow 4s linear infinite;
+}
+
+/* Arka Plan Hareketli Işık (Scanner) */
+.banner-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(83, 252, 24, 0.03), transparent);
+    animation: scan 6s linear infinite;
+}
+
+/* ============================= */
+/* SOL TARAF - USERNAME */
+/* ============================= */
+.brand {
+    position: relative;
+    animation: fadeInBlur 1.2s ease-out;
+}
+
+.username {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: #ffffff;
+    background: linear-gradient(to right, #fff, var(--kick-green), #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 5s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(83, 252, 24, 0.3));
+}
+
+.brand-sub {
+    font-size: 20px;
+    color: var(--kick-green);
+    letter-spacing: 8px;
+    margin-top: 5px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* ============================= */
+/* ORTA SOSYAL */
+/* ============================= */
+.social {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    animation: fadeInBlur 1.5s ease-out;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-item:hover {
+    transform: translateY(-8px) scale(1.1);
+}
+
+.social-item img {
+    width: 32px;
+    height: 32px;
+}
+
+.social-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* ============================= */
+/* SAĞ TARAF - INFO */
+/* ============================= */
+.right {
+    text-align: right;
+    animation: fadeInBlur 1.8s ease-out;
+}
+
+.mlbb-badge {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.mlbb-badge span {
+    color: var(--kick-green);
+    animation: pulseGlow 2s infinite;
+}
+
+.status-tag {
+    display: inline-block;
+    background: rgba(83, 252, 24, 0.05);
+    border: 1px solid var(--kick-green);
+    color: var(--kick-green);
+    padding: 5px 15px;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(83, 252, 24, 0.1);
+}
+
+/* ============================= */
+/* ANİMASYONLAR */
+/* ============================= */
+@keyframes laserFlow {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes shineText {
+    to { background-position: 200% center; }
+}
+
+@keyframes fadeInBlur {
+    from { opacity: 0; filter: blur(10px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(83, 252, 24, 0.5); opacity: 0.8; }
+    50% { text-shadow: 0 0 20px rgba(83, 252, 24, 1); opacity: 1; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="banner-wrapper">
+    <div class="brand">
+        <div class="username">IronCresCent</div>
+        <div class="brand-sub">Mobile Legends</div>
+    </div>
+
+    <div class="social">
+        <a href="#" class="social-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" style="filter: invert(1);">
+            <span class="social-text">@ironcrescent</span>
+        </a>
+        
+        <div style="width: 3px; height: 40px; background: rgba(255,255,255,0.5);"></div>
+        
+        <a href="#" class="social-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/10103/10103215.png" style="filter: invert(72%) sepia(85%) saturate(1200%) hue-rotate(65deg) brightness(100%) contrast(100%);">
+            <span class="social-text">kick.com/ironcrescent</span>
+        </a>
+    </div>
+
+    <div class="right">
+        <div class="mlbb-badge">ID: <span>451 829 843</span></div>
+        <div class="status-tag">Content Creator</div>
+    </div>
+</div>
+
+</body>
+</html>
